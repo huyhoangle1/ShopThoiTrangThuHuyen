@@ -41,7 +41,7 @@ namespace server.Services
                     street = y.street,
                     total = y.total,
                     user = y.user,
-                    userId = y.userId.Value,
+                     userId = y.userId.HasValue ? y.userId.Value : Guid.Empty, 
                 }).ToListAsync();
             return list;
         }
@@ -93,8 +93,9 @@ namespace server.Services
                     street = y.street,
                     total = y.total,
                     user = y.user,
-                    userId = y.userId.Value,
-                }).ToListAsync();
+                    userId = y.userId.HasValue ? y.userId.Value : Guid.Empty, 
+
+        }).ToListAsync();
             var temp = new List<OrderViewModel>();
             foreach(var item in list)
             {
@@ -160,7 +161,7 @@ namespace server.Services
                     street = y.street,
                     total = y.total,
                     user = y.user,
-                    userId = y.userId.Value,
+                    userId = y.userId.HasValue ? y.userId.Value : Guid.Empty,
                 }).ToListAsync();
             return list;
         }
@@ -184,7 +185,7 @@ namespace server.Services
                     street = y.street,
                     total = y.total,
                     user = y.user,
-                    userId = y.userId.Value,
+                     userId = y.userId.HasValue ? y.userId.Value : Guid.Empty, 
                 }).ToListAsync();
             return list;
         }
@@ -257,7 +258,7 @@ namespace server.Services
                     street = y.street,
                     total = y.total,
                     user = y.user,
-                    userId = y.userId.Value,
+                     userId = y.userId.HasValue ? y.userId.Value : Guid.Empty, 
                 })
                 .FirstOrDefaultAsync();
         }
@@ -333,7 +334,7 @@ namespace server.Services
                     street = y.street,
                     total = y.total,
                     user = y.user,
-                    userId = y.userId.Value,
+                     userId = y.userId.HasValue ? y.userId.Value : Guid.Empty, 
                 }).ToListAsync();
                 var temp = new List<OrderViewModel>();
                 foreach (var item in list)

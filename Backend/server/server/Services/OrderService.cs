@@ -61,7 +61,7 @@ namespace server.Services
                 street = y.street,
                 total = y.total,
                 user = y.user,
-                userId = y.userId.Value,
+                 userId = y.userId.HasValue ? y.userId.Value : Guid.Empty, 
             }).ToListAsync();
             return data;
         }

@@ -1,6 +1,7 @@
-import React from 'react';
-import { Row, Col, Avatar } from 'antd';
-import { FacebookOutlined, YoutubeOutlined } from '@ant-design/icons';
+import React, { Fragment } from 'react';
+import {Row, Col, Avatar} from 'antd';
+import {FacebookOutlined, YoutubeOutlined} from '@ant-design/icons';
+import {Link} from 'react-router-dom';
 import './Footer.css';
 import img1 from '../../images/footer/img1.PNG';
 import img2 from '../../images/footer/img2.PNG';
@@ -9,10 +10,11 @@ import img4 from '../../images/footer/img4.PNG';
 import img5 from '../../images/footer/img5.PNG';
 import img6 from '../../images/footer/img6.PNG';
 
+
 export default function Footer() {
     return (
-        <footer style={{ width: '100%', background: '#ffffff' }}>
-            <div style={{ width: '75%', margin: '0 auto' }}>
+        <footer style={{width: '100%',  background: '#ffffff'}}>
+            <div style={{width: '75%', margin: '0 auto'}}>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                     <Col span={6}>
                         <article className="article-footer">
@@ -33,13 +35,13 @@ export default function Footer() {
                             <h4>PHƯƠNG THỨC THANH TOÁN</h4>
                             <h6>
                                 <Row>
-                                    <Col lg={{ span: 18, offset: 3 }}>
-                                        <img className="img-icon" src={img1} alt="img1" />
-                                        <img className="img-icon" src={img2} alt="img2" />
-                                        <img className="img-icon" src={img3} alt="img3" />
-                                        <img className="img-icon" src={img4} alt="img4" />
-                                        <img className="img-icon" src={img5} alt="img5" />
-                                        <img className="img-icon" src={img6} alt="img6" />
+                                    <Col lg={{span: 18, offset: 3}}>
+                                        <img className="img-icon" src={img1}></img>
+                                        <img className="img-icon" src={img2}></img>
+                                        <img className="img-icon" src={img3}></img>
+                                        <img className="img-icon" src={img4}></img>
+                                        <img className="img-icon" src={img5}></img>
+                                        <img className="img-icon" src={img6}></img>
                                     </Col>
                                 </Row>
                             </h6>
@@ -50,37 +52,27 @@ export default function Footer() {
                             <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
                             <h6>
                                 <Row>
-                                    <Col span={24} style={{ textAlign: 'center' }}>
-                                        <Avatar
-                                            shape="square"
-                                            size={48}
-                                            style={{
-                                                color: '#096dd9',
-                                                background: 'white',
-                                            }}
-                                            icon={<FacebookOutlined />}
-                                        />
-                                        <Avatar
-                                            shape="square"
-                                            size={48}
-                                            style={{
-                                                color: '#f5222d',
-                                                background: 'white',
-                                            }}
-                                            icon={<YoutubeOutlined />}
-                                        />
+                                    <Col span={24} style={{textAlign: 'center'}}>
+                                        
+                                    <Avatar shape="square" size={48} style={{color: '#096dd9', 
+                                     background: 'white'
+                                     }} icon={<FacebookOutlined />} />
+                                    
+                                    <Avatar shape="square" size={48} style={{color: '#f5222d',
+                                    background: 'white'}} icon={<YoutubeOutlined />} />
+                                    
                                     </Col>
                                 </Row>
                             </h6>
                         </article>
                     </Col>
                 </Row>
-                <div style={{ textAlign: 'center' }}>
+                <div style={{textAlign: 'center'}}>
                     <br></br>
                     <h4>Copyright 2020 All rights reserved | made by Online Shop</h4>
                     <br></br>
                 </div>
             </div>
         </footer>
-    );
+    )
 }

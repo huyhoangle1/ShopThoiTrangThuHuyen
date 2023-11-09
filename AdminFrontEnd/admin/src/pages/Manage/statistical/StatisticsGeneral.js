@@ -6,6 +6,7 @@ import BreadScrumb from '../../../components/breadScrumb/BreadScrumb';
 import Chart from "react-apexcharts";
 import axiosInstance from '../../../utils/axiosInstance';
 import {Row, Col, Select, Button, Table, Input, DatePicker, Tabs } from 'antd';
+import { logRoles } from '@testing-library/react';
 
 const { RangePicker } = DatePicker;
 const {TabPane} = Tabs;
@@ -17,7 +18,6 @@ export default class StatisticsGeneral extends Component {
             status: true,
             products: [],
             productOrders: [],
-            //
             fromAmount: null,
             toAmount: null,
             fromDate: null,
@@ -179,7 +179,6 @@ export default class StatisticsGeneral extends Component {
                             <Button onClick={this.handleStatistic.bind(this)}>Thống kê</Button>
                         </Col>
                         <Col span={2}>
-                            
                             <Button>Xuất Excel</Button>
                         </Col>
                         <Col span={2} offset={1}>

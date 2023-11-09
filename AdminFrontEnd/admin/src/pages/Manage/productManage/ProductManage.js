@@ -311,7 +311,7 @@ export default class ProductManage extends Component {
         render: prov => <span style={{}}>{prov.name}</span>
       },
       {
-        title: (<Button icon={<ImportOutlined />} onClick={() => this.handleClickBtn()} style={{ background: "#389e0d", borderColor: "#389e0d", color: 'white' }}>Add product</Button>),
+        title: (<Button icon={<ImportOutlined />} onClick={() => this.handleClickBtn()} style={{ background: "#389e0d", borderColor: "#389e0d", color: 'white' }}>Thêm sản phẩm</Button>),
         key: 'action',
         width: '25%',
         render: (text, record, index) => (

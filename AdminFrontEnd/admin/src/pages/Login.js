@@ -22,7 +22,6 @@ class Login extends Component {
     }
     
     render() {
-        
         const {isLoading} = this.props; 
         if(isLoading)
             return (<Spin size="large" tip="LOADING"></Spin>)
@@ -33,7 +32,7 @@ class Login extends Component {
                 }
                 <h1>ĐĂNG NHẬP</h1>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input type="text" placeholder="ID" name="username"></input>
+                    <input type="text" placeholder="Username" name="username"></input>
                     <input type="password" placeholder="Mật khẩu" name="password"></input>
                     <button type="submit">ENTER</button>
                 </form>

@@ -36,7 +36,7 @@ class Cart extends Component {
             return (
                 <div style={{background: '#f7f7f7', minHeight: 450}}>
                     <div style={{maxWidth: '75%', margin: '0 auto'}}>
-                        <BreadScrumb title="Giỏ hàng"></BreadScrumb>
+                        <BreadScrumb title="Mua hàng"></BreadScrumb>
                     </div>
                     <div style={{display: 'flex', justifyContent: 'space-between', maxWidth: '75%', margin: '0 auto'}}>
                         <ListCart carts={carts}></ListCart>

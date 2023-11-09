@@ -15,13 +15,11 @@ export default class StatisticsRevenue extends Component {
         super(props);
     
         this.state = {
-          //
           pageSize: 6,
           pageDefault: 1,
-          //
-          option: 1,
-          month: 7,
-          year: 2020,
+          option: 0,
+          month: 0,
+          year: 2023,
           labels: [],
           countOrders: [],
           sumRevenues: [],
@@ -195,8 +193,8 @@ export default class StatisticsRevenue extends Component {
                             onChange={this.handleChangeYear.bind(this)}
                             style={{ width: 200 }}
                             >
-                              <Option value={2020}>2020</Option>
-                              <Option value={2019}>2019</Option>
+                              <Option value={2023}>2023</Option>
+                              <Option value={2022}>2022</Option>
                               
                             </Select>
                           </Col>

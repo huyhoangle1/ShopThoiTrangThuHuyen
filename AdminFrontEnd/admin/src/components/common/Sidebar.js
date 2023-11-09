@@ -97,11 +97,11 @@ export default class SideBar extends Component {
                                 title={
                                 <span>
                                     <TeamOutlined />
-                                    <span>Quản lý User</span>
+                                    <span>Quản lý tài khoản</span>
                                 </span>
                                 }
                             >
-                                <Menu.Item key="7"><Link to="/admin/user-manage">Quản lý user</Link></Menu.Item>
+                                <Menu.Item key="7"><Link to="/admin/user-manage">Quản lý tài khoản</Link></Menu.Item>
                                 
                             </SubMenu>
                             <SubMenu

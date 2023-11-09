@@ -10,7 +10,7 @@ import moment from 'moment';
 import {RotateLeftOutlined, UserOutlined, DeleteOutlined, SearchOutlined, SyncOutlined } from '@ant-design/icons';
 
 const OK = "Khôi phục trạng thái Hiển thị cho User này!";
-const Cancel = "Xác nhận Xóa User này!";
+const Cancel = "Xác nhận xóa tài khoản này!";
 
 export default class UserManage extends Component {
     //
@@ -189,7 +189,7 @@ export default class UserManage extends Component {
                 <div className="main_container">
                     <Sidebar isActive="7"></Sidebar>
                     <div className="content">
-                        <BreadScrumb title="Quản lý user"></BreadScrumb>
+                        <BreadScrumb title="Quản lý tài khoản"></BreadScrumb>
                         <Spin spinning={isLoading} tip="LOADING" size="large">
                             <br/>
                             <Row>

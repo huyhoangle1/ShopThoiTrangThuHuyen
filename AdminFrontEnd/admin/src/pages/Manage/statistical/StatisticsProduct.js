@@ -13,7 +13,7 @@ export default class StatisticsProduct extends Component {
     
         this.state = {
           //
-          isChart: 0,
+          isChart: 1,
           //
           status: 0,
           labels: [],

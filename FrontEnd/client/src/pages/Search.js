@@ -121,10 +121,10 @@ class Search extends Component {
                                 <h5>DANH MỤC SẢN PHẨM</h5>
                                 <ul style={{listStyleType: 'none'}}>
                                 {
-                                    categories.length === 0 ? "" : 
+                                    categories?.length === 0 ? "" : 
                                     categories.map(e => {
                                         return <li key={e.id} style={{color: 'gray', cursor: 'pointer',
-                                        fontWeight: new URLSearchParams(this.props.location.search).get('searchKey').includes(e.name)
+                                        fontWeight: new URLSearchParams(this.props.location.search).get('searchKey')?.includes(e.name)
                                         ?"bold":""
                                         }}>{e.name}</li>
                                     })

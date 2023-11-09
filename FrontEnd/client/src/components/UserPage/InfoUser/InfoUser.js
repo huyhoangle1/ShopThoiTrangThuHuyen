@@ -59,7 +59,7 @@ class InfoUser extends Component {
         )
     }
     handleSubmitForm(values) {
-
+        console.log(values);
         this.props.onSubmitUserForm(
             {
                 avatar: this.state.imageList,

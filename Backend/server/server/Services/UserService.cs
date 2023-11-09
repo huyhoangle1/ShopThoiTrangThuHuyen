@@ -171,7 +171,7 @@ namespace server.Services
             if (user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var passwordResetLink = string.Format("https://localhost:3000/ResetPassword?token={0}&email={1}", token, request.email);
+                var passwordResetLink = string.Format("http://localhost:3000/ResetPassword?token={0}&email={1}", token, request.email);
                 var emailMessage = new MimeMessage();
                 emailMessage.From.Add(new MailboxAddress(_emailConfiguration.From));
                 //var to = new List<MailboxAddress>();
@@ -182,7 +182,7 @@ namespace server.Services
 
                 emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
                 {
-                    Text = string.Format("<a href='https://localhost:3000/ResetPassword?token={0}&email={1}'>Nhấp vào link này để Reset Password</a>",
+                    Text = string.Format("<a href='http://localhost:3000/ResetPassword?token={0}&email={1}'>Nhấp vào link này để Reset Password</a>",
                         token, request.email)
                 };
                 return await Send(emailMessage);
