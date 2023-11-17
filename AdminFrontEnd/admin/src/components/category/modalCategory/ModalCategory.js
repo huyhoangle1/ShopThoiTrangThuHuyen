@@ -12,18 +12,17 @@ export default class ModalCategory extends Component {
         this.props.onCancel(false)
     }
     handleChangeInput(e) {
-        
         this.props.onChangeInput(e)
     }
     render() {
 
         const { data , visible } = this.props;
+        console.log(this);
         return (
             <Modal
 
                 title={data.id ? "Cập nhập danh mục" : "Thêm danh mục"}
                 visible={visible}
-                
                 onCancel={this.handleCancel.bind(this)}
                 footer={null}
             >

@@ -11,26 +11,32 @@ export default class SideBar extends Component {
     state = {
         theme: 'dark',
         current: this.props.isActive,
+        sub: this.props.isMenu
       };
       
-    
       changeTheme = value => {
         this.setState({
           theme: value ? 'dark' : 'light',
         });
       };
+
     
-      handleClick = e => {
-        
+      handleSubMenuOpenChange = (openKeys) => {
         this.setState({
-          current: e.key,
+            sub: openKeys[1],
+          });
+      };
+      handleClick = (e) => {
+        console.log(e);
+        const clickedKey = e.key;
+        this.setState({
+          current: clickedKey,
         });
       };
     render() {
-        
+        console.log(this.props);
         return (
             <>
-                
                 <div className="sidebar">
                   
                     <div>
@@ -38,8 +44,9 @@ export default class SideBar extends Component {
                         <Menu
                             theme={this.state.theme}
                             onClick={this.handleClick}
+                            openKeys={[this.state.sub]}
+                            onOpenChange={this.handleSubMenuOpenChange}
                             style={{ width: 256 }}
-                            defaultSelectedKeys="1"
                             selectedKeys={[this.state.current]}
                             mode="inline"
                             >
@@ -74,11 +81,11 @@ export default class SideBar extends Component {
                                 title={
                                 <span>
                                     <RadarChartOutlined />
-                                    <span>Quản lý Nguồn cung</span>
+                                    <span>Quản lý nhà Cung Cấp</span>
                                 </span>
                                 }
                             >
-                                <Menu.Item key="5"><Link to="/admin/provider-manage">Quản lý Nguồn cung</Link></Menu.Item>
+                                <Menu.Item key="5"><Link to="/admin/provider-manage">Quản lý Nhà Cung Cấp</Link></Menu.Item>
                             </SubMenu>
                             <SubMenu
                                 key="sub4"

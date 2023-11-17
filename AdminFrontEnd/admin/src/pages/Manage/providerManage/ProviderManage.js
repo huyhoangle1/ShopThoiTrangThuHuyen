@@ -156,7 +156,7 @@ export default class ProviderManage extends Component {
         // colums
         const columns = [
             {
-                title: 'Tên nhà cung ứng',
+                title: 'Tên nhà cung cấp',
                 dataIndex: 'name',
                 width: '40%',
                 key: 'name',
@@ -176,7 +176,7 @@ export default class ProviderManage extends Component {
 
             {
                 title: (<Button icon={<ImportOutlined />} onClick={() => this.handleClickBtn()}
-                    style={{ background: "#389e0d", borderColor: "#389e0d", color: 'white' }}>Add provider</Button>),
+                    style={{ background: "#389e0d", borderColor: "#389e0d", color: 'white' }}>Thêm nhà cung cấp</Button>),
                 width: '30%',
                 key: 'action',
                 render: (text, record, index) => (
@@ -184,10 +184,10 @@ export default class ProviderManage extends Component {
                     <span>
 
                         <Button type="primary" icon={<EditOutlined />} style={{ marginRight: 10, marginLeft: 10 }}
-                            onClick={() => this.handleClickBtn(record)}>Update</Button>
+                            onClick={() => this.handleClickBtn(record)}>Cập nhật</Button>
                         <>
                             <Popconfirm placement="left" title={warn} onConfirm={() => this.confirmDelete(record)} okText="Yes" cancelText="No">
-                                <Button icon={<DeleteOutlined />} type="danger">Delete</Button>
+                                <Button icon={<DeleteOutlined />} type="danger">Xóa</Button>
                             </Popconfirm>
                         </>
                     </span>
@@ -203,7 +203,7 @@ export default class ProviderManage extends Component {
             <>
                 <Header></Header>
                 <div className="main_container">
-                    <Sidebar isActive="5"></Sidebar>
+                    <Sidebar isActive="5" isMenu="sub3"></Sidebar>
                     <div className="content">
                         <BreadScrumb title="Quản lý nguồn cung"></BreadScrumb>
                         {

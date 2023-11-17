@@ -245,7 +245,7 @@ export default class OrderCanceled extends Component {
             <>
             <Header></Header>   
                 <div className="main_container">
-                    <Sidebar isActive="12"></Sidebar>
+                    <Sidebar isActive="12" isMenu="sub1"></Sidebar>
                     <div className="content">
                         <BreadScrumb title="Đơn hàng Đã hủy"></BreadScrumb>
                         <br></br>

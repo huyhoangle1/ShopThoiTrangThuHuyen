@@ -345,7 +345,7 @@ export default class OrderNotConfirm extends Component {
             <>
             <Header></Header>   
                 <div className="main_container">
-                    <Sidebar isActive="3"></Sidebar>
+                    <Sidebar isActive="3" isMenu="sub1"></Sidebar>
                     <div className="content">
                         <Spin spinning={isLoading} tip="LOADING...">
                         <BreadScrumb title="Đơn hàng chưa duyệt"></BreadScrumb>

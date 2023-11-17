@@ -151,7 +151,7 @@ export default class EvaluationManage extends Component {
             <>
             <Header></Header>   
                 <div className="main_container">
-                    <Sidebar isActive="8"></Sidebar>
+                    <Sidebar isActive="8" isMenu="sub6"></Sidebar>
                     <div className="content">
                         <Spin spinning={isLoading} tip="LOADING" size="large">
                         <BreadScrumb title="Quản lý đánh giá"></BreadScrumb>

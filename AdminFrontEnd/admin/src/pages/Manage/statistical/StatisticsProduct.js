@@ -151,7 +151,7 @@ export default class StatisticsProduct extends Component {
         return (
             <><Header></Header>   
             <div className="main_container">
-                <Sidebar isActive="10"></Sidebar>
+                <Sidebar isActive="10" isMenu="sub7"></Sidebar>
                 <div className="content">
                     <BreadScrumb title="Thống kê Sản phẩm"></BreadScrumb>
                     <br/>

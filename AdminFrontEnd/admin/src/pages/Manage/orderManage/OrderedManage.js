@@ -245,7 +245,7 @@ export default class OrderedManage extends Component {
             <>
             <Header></Header>   
                 <div className="main_container">
-                    <Sidebar isActive="1"></Sidebar>
+                    <Sidebar isActive="1" isMenu="sub1"></Sidebar>
                     <div className="content">
                         <BreadScrumb title="Đơn hàng thành công"></BreadScrumb>
                         <br></br>

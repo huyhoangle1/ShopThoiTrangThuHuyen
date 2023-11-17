@@ -4,6 +4,7 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios'
+import dayjs from 'dayjs';
 import moment from 'moment';
 
 
@@ -59,11 +60,10 @@ class InfoUser extends Component {
         )
     }
     handleSubmitForm(values) {
-        console.log(values);
         this.props.onSubmitUserForm(
             {
                 avatar: this.state.imageList,
-                birthDay: values.birthDay._i?values.birthDay._i:moment(new Date(values.birthDay._d)).format("DD/MM/YYYY"),
+                birthDay: values.birthDay._i?dayjs(values.birthDay):moment(new Date(values.birthDay._d)).format("DD/MM/YYYY"),
                 address: values.address,
                 displayname: values.displayname,
                 gender: values.gender,
@@ -81,6 +81,7 @@ class InfoUser extends Component {
                 <div className="ant-upload-text">Upload</div>
             </div>
         );
+        console.log((user.birthDay));
         return (
             <div>
                 <Form onFinish={this.handleSubmitForm.bind(this)} {...config}
@@ -130,7 +131,7 @@ class InfoUser extends Component {
                         </Col>
                     </Row>
                     <div style={{ textAlign: 'center' }}>
-                        <Button htmlType="submit" disabled={this.props.disabledUpdate}>Cập nhập</Button>
+                        <Button htmlType="submit" disabled={this.props.disabledUpdate}>Cập nhật</Button>
 
                     </div>
                     <br></br>

@@ -318,9 +318,9 @@ export default class ProductManage extends Component {
           <span>
 
             <Button type="primary" icon={<EditOutlined />} style={{ marginRight: 10, marginLeft: 10 }}
-              onClick={() => this.handleClickBtn(record)}>Update</Button>
+              onClick={() => this.handleClickBtn(record)}>Cập nhật</Button>
             <Popconfirm placement="left" title={warn} onConfirm={() => this.confirmDelete(record)} okText="Yes" cancelText="No">
-              <Button icon={<DeleteOutlined />} type="danger">Delete</Button>
+              <Button icon={<DeleteOutlined />} type="danger">Xóa</Button>
             </Popconfirm>
           </span>
         ),
@@ -333,7 +333,7 @@ export default class ProductManage extends Component {
       <>
         <Header></Header>
         <div className="main_container">
-          <Sidebar isActive="6"></Sidebar>
+          <Sidebar isActive="6" isMenu="sub4"></Sidebar>
           <div className="content">
 
             <BreadScrumb title="Quản lý sản phẩm"></BreadScrumb>

@@ -132,7 +132,7 @@ export default class StatisticsGeneral extends Component {
         return (
             <><Header></Header>   
             <div className="main_container">
-                <Sidebar isActive="11"></Sidebar>
+                <Sidebar isActive="11" isMenu="sub7"></Sidebar>
                 <div className="content">
                     <BreadScrumb title="Thống kê Sản phẩm"></BreadScrumb>
                     <br/>

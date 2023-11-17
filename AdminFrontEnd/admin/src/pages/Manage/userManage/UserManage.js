@@ -187,7 +187,7 @@ export default class UserManage extends Component {
             <>
             <Header></Header>   
                 <div className="main_container">
-                    <Sidebar isActive="7"></Sidebar>
+                    <Sidebar isActive="7" isMenu="sub5"></Sidebar>
                     <div className="content">
                         <BreadScrumb title="Quản lý tài khoản"></BreadScrumb>
                         <Spin spinning={isLoading} tip="LOADING" size="large">
