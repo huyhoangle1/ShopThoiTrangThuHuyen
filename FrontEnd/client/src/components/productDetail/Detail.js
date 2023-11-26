@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import empty from '../../images/empty.jpg';
 import './detail.css';
-import { Tag, notification, Skeleton, Descriptions, Badge, Rate } from 'antd';
+import { Tag, notification, Skeleton, Descriptions, Badge, Rate, Input } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { addToCart } from '../../action/cartsAction';
@@ -138,9 +138,9 @@ class Detail extends Component {
                                     <span className="title-detail"><b>Màu sắc:</b></span>
                                     <Tag color={colors[product.color]}><b>{TranslateColor(product.color)}</b></Tag>
                                 </div>
-                                <div className="title-detail-item">
+                                <div className="title-detail-item count-item-input">
                                     <span className="title-detail"><b>Số lượng:</b></span>
-                                    <input
+                                    <Input
                                         type="number"
                                         min="1"
                                         value={this.state.countItem}

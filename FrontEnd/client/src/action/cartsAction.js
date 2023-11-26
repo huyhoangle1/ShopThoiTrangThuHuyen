@@ -37,8 +37,9 @@ export const handle_checkout_cart = (order) => {
         .then(res => {
             dispatch(create_order_success(res.data));
         })
-        .catch(err => {
-            dispatch(create_order_error(err));
+        .catch(error => {
+            console.log(error?.response?.data);
+            dispatch(create_order_error(error?.response?.data));
         })
     }
 }

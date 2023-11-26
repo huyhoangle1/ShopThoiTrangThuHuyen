@@ -10,6 +10,8 @@ namespace server.Interfaces
     public interface IOrderService
     {
         Task<int> Create(OrderCreateRequest request);
+        Task<bool> QrMoMo();
         Task<List<OrderViewModel>> GetOrderListByUserId(Guid userId);
+        Task<bool> CheckAmount(OrderCreateRequest request);
     }
 }

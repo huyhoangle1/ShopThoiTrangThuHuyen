@@ -8,6 +8,10 @@ using server.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace server.Services
@@ -15,10 +19,35 @@ namespace server.Services
     public class OrderService : IOrderService
     {
         private readonly ShopDbContext _context;
+        private static readonly HttpClient client = new HttpClient();
         public OrderService(ShopDbContext context)
         {
             _context = context;
         }
+
+        public async Task<bool> QrMoMo()
+        {
+            
+            return true;
+        }
+
+        private static String getSignature(String text, String key)
+        {
+            // change according to your needs, an UTF8Encoding
+            // could be more suitable in certain situations
+            ASCIIEncoding encoding = new ASCIIEncoding();
+
+            Byte[] textBytes = encoding.GetBytes(text);
+            Byte[] keyBytes = encoding.GetBytes(key);
+
+            Byte[] hashBytes;
+
+            using (HMACSHA256 hash = new HMACSHA256(keyBytes))
+                hashBytes = hash.ComputeHash(textBytes);
+
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
+
         public async Task<int> Create(OrderCreateRequest request)
         {
             var order = new Order()
@@ -40,6 +69,21 @@ namespace server.Services
             _context.orders.Add(order);
             await _context.SaveChangesAsync();
             return order.id;
+        }
+
+        public async Task<bool> CheckAmount(OrderCreateRequest request)
+        {
+            foreach (var orderDetail in request.OrderDetails)
+            {
+                var product = await _context.products.FindAsync(new object[] { orderDetail.productId });
+
+                if (product != null && orderDetail.quantity > product.amount)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public async Task<List<OrderViewModel>> GetOrderListByUserId(Guid userId)

@@ -134,9 +134,11 @@
     height: 370px;
 }
 .title-detail-item{
-    /*--------từng dòng-------*/
     display: flex;
     padding: 8px 0;
+}
+input.ant-input {
+    width: 100px;
 }
 .title-detail{
     width: 40%;
