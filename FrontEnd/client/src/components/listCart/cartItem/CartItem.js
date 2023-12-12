@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Rate, Button, Tag} from 'antd';
+import {Rate, Button, Tag, Input} from 'antd';
 import {Link} from 'react-router-dom';
 import * as ParsePrice from '../../../helper/parsePriceForSale';
 import {MinusOutlined, PlusOutlined} from '@ant-design/icons';
@@ -7,6 +7,13 @@ import './cartItem.css';
 import emptyImage from '../../../images/empty.jpg'
 
 class CartItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            valueNumber: props.item.quantity,
+        }
+        
+    }
     //xóa
     handleClickRemoveItem(id){
         this.props.removeItem(id)
@@ -17,14 +24,15 @@ class CartItem extends Component {
     }
     //giảm
     handleDecreasingQuantity(item){
-        //quantity === 1 thì không cho giảm
         if(item.quantity > 1){
             this.props.subQuantity(item.id)
         }
     }
+    handleQuantityChange(e, item) {
+             this.props.updateQuantity(item.id, e.target.value); 
+    }
     render() {
         const {item} = this.props;
-        
         
         return (
             <div className="container-cart-item">
@@ -44,18 +52,13 @@ class CartItem extends Component {
                     </div>
                     <div className="remove-inc-dec-cart-item">
                         <div className="inc-dec-cart-item" >
-                            <div className="mount-item inc-dec-btn" 
-                            onClick={() => this.handleDecreasingQuantity(item)}
-                            style={{ width: '32px', borderRight: '2px solid gray'}}>
-                                <MinusOutlined></MinusOutlined>
-                            </div>
-                            <div className="mount-item" style={{width: '30px'}}>
-                                <span>{item.quantity}</span>
-                            </div>
-                            <div className="mount-item inc-dec-btn"
-                            onClick={() => this.handleIncreasingQuantity(item)}
-                            style={{width: '32px', borderLeft: '2px solid gray'}}>
-                                <PlusOutlined></PlusOutlined>
+                            <div className="mount-item" style={{width: '100px'}}>
+                                <Input
+                                    type='number'
+                                    defaultValue={this.state.valueNumber}
+                                    onChange={(e) => this.handleQuantityChange(e, item)} 
+                                    style={{ width: '250px', textAlign: 'center' }} 
+                                />
                             </div>
                         </div>
                         <Button onClick={() => this.handleClickRemoveItem(item.id)} style={{marginLeft: '15px'}} type="primary" danger>Xóa</Button>

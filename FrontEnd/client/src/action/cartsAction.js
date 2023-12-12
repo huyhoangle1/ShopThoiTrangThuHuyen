@@ -1,4 +1,4 @@
-import {ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,CREATE_ORDER_ERROR, CREATE_ORDER_LOADING, CREATE_ORDER_SUCCESS} 
+import {ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,CREATE_ORDER_ERROR, CREATE_ORDER_LOADING, CREATE_ORDER_SUCCESS, UPDATE_QUANTITY} 
 from './action-types/carts-actions';
 import * as orderApis from '../api/order.api';
 
@@ -20,6 +20,13 @@ export const subtractQuantity=(id)=>{
     return{
         type: SUB_QUANTITY,
         payload: id
+    }
+}
+
+export const updateQuantity=(id, number)=>{
+    return{
+        type: UPDATE_QUANTITY,
+        payload: {"id": id, "number": number}
     }
 }
 //tăng quantity cart item

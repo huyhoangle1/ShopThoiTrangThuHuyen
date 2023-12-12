@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CartItem from './cartItem/CartItem';
 import {connect} from 'react-redux';
-import {removeItem, addQuantity, subtractQuantity} from '../../action/cartsAction'
+import {removeItem, addQuantity, subtractQuantity, updateQuantity} from '../../action/cartsAction'
 
  class ListCart extends Component {
     handleRomoveItem(id){
@@ -13,6 +13,9 @@ import {removeItem, addQuantity, subtractQuantity} from '../../action/cartsActio
     handleSubQuantity(id){
         this.props.subtractQuantity(id);
     }
+    handleSubQuantity(id, number){
+        this.props.updateQuantity(id, number);
+    }
     render() {
         //render list cart
         
@@ -22,6 +25,7 @@ import {removeItem, addQuantity, subtractQuantity} from '../../action/cartsActio
                 removeItem={this.handleRomoveItem.bind(this)}
                 addQuantity={this.handleAddQuantity.bind(this)}
                 subQuantity={this.handleSubQuantity.bind(this)}
+                updateQuantity={this.handleSubQuantity.bind(this)}
                 >
                 </CartItem>
             })
@@ -45,7 +49,8 @@ const mapDispatchToProps = (dispatch) => {
     return{
         removeItem: (id) => {dispatch(removeItem(id))},
         addQuantity: (id) => {dispatch(addQuantity(id))},
-        subtractQuantity: (id) => {dispatch(subtractQuantity(id))}
+        subtractQuantity: (id) => {dispatch(subtractQuantity(id))},
+        updateQuantity: (id, number) => {dispatch(updateQuantity(id, number))}
     }
 }
 export default connect(null, mapDispatchToProps)(ListCart);

@@ -207,7 +207,7 @@ namespace server.Services
             var total = order.total;
             var customer = string.IsNullOrEmpty(order.guess) ? order.user.displayname : order.guess;
             order.status = request.status;
-            order.note = "Admin cancelled";
+            order.note = "Admin hủy";
             _context.Entry(order).State = EntityState.Modified;
             var rs = await _context.SaveChangesAsync() > 0;
             return new ResultOrderViewModel { total = total, customer = customer, email= order.email, success = rs };
@@ -515,7 +515,7 @@ namespace server.Services
             }
             
             order.status = OrderStatus.Cancel;
-            order.note = "User cancelled";
+            order.note = "Người dùng hủy";
             _context.Entry(order).State = EntityState.Modified;
             return await _context.SaveChangesAsync() > 0;
             

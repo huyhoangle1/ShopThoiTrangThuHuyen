@@ -138,7 +138,8 @@ class ModalCheckout extends Component {
                                 email: user.email,
                                 phone: user.phone,
                                 feeShip: this.state.feeShip,
-                                payment: 1
+                                payment: 1,
+                                address: user.address
                             }}
                         >
                             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -187,7 +188,7 @@ class ModalCheckout extends Component {
                                     ]}>
                                         <Input type="text" placeholder="Địa chỉ"></Input>
                                     </Form.Item>
-                                    <Form.Item required name="street" label="Đường" {...formItemLayout} labelAlign="left"
+                                    {/* <Form.Item required name="street" label="Đường" {...formItemLayout} labelAlign="left"
                                       rules={[
                                         {
                                             required: true,
@@ -195,7 +196,7 @@ class ModalCheckout extends Component {
                                         }
                                     ]}>
                                         <Input type="text" placeholder="Đường"></Input>
-                                    </Form.Item>
+                                    </Form.Item> */}
                                     <Form.Item name="note" label="Ghi chú" {...formItemLayout} labelAlign="left">
                                         <TextArea placeholder="Ghi chú"></TextArea>
                                     </Form.Item>

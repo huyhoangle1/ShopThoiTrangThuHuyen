@@ -56,7 +56,7 @@ export default class OrderCanceled extends Component {
                 address: ele.address,
                 createDate: ele.createDate,
                 //email: ele.email,
-                customer: !!ele.guess? ele.guess:ele.user.displayname,
+                customer: !!ele.guess? ele?.guess:ele?.user?.displayname,
                 note: ele.note,
                 contact: [ele.email, ele.phone],
                 //phone: ele.phone,
@@ -84,7 +84,7 @@ export default class OrderCanceled extends Component {
     }
     //xem chi tiết
     handleViewDetail = async(record) => {
-        console.log(record.note);
+        console.log(record);
         let list = await axiosInstance(`ManageOrder/GetOrderDetailByOrderId?${queryString.stringify({
             orderId: record.id
         })}`,'GET')
@@ -102,6 +102,8 @@ export default class OrderCanceled extends Component {
                 unitPrice: ele.unitPrice,
                 amount: !!ele.product ? ele.product[0].amount : 0,
                 key: ele.id,
+                address: ele.address,
+                phone: ele.phone
             }
         });
         this.setState({
@@ -110,6 +112,8 @@ export default class OrderCanceled extends Component {
             feeShip: record.feeShip,
             customerItem: record.customer,
             note: record.note,
+            address: record.address,
+            phone: record.phone
         })
     }
     //hide modal detail
@@ -154,7 +158,7 @@ export default class OrderCanceled extends Component {
                 address: ele.address,
                 createDate: ele.createDate,
                 //email: ele.email,
-                customer: !!ele.guess? ele.guess:ele.user.displayname,
+                customer: !!ele?.guess? ele?.guess:ele?.user?.displayname,
                 note: ele.note,
                 contact: [ele.email, ele.phone],
                 //phone: ele.phone,
@@ -177,7 +181,7 @@ export default class OrderCanceled extends Component {
         //
         //
         const {orderCanceledList, visible, orderDetailList, isLoading, customerItem, feeShip, 
-            visibleCancel , orderId , note} = this.state;
+            visibleCancel , orderId , note, address, phone} = this.state;
         
         //
         const columns = [
@@ -309,6 +313,8 @@ export default class OrderCanceled extends Component {
                             feeShip={feeShip}
                             customer={customerItem}
                             note={note}
+                            phone={phone}
+                            address={address}
                             >
                             </ModalViewOrderDetail> : null
                         }

@@ -138,9 +138,10 @@ class Detail extends Component {
                                     <span className="title-detail"><b>Màu sắc:</b></span>
                                     <Tag color={colors[product.color]}><b>{TranslateColor(product.color)}</b></Tag>
                                 </div>
-                                <div className="title-detail-item count-item-input">
+                                <div className="title-detail-item">
                                     <span className="title-detail"><b>Số lượng:</b></span>
                                     <Input
+                                        className='count-item-input'
                                         type="number"
                                         min="1"
                                         value={this.state.countItem}

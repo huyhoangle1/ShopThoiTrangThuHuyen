@@ -1,5 +1,5 @@
 //action of carts
-import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, CREATE_ORDER_ERROR, CREATE_ORDER_LOADING, CREATE_ORDER_SUCCESS }
+import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, CREATE_ORDER_ERROR, CREATE_ORDER_LOADING, CREATE_ORDER_SUCCESS, UPDATE_QUANTITY }
     from '../action/action-types/carts-actions';
 //
 import * as ParsePrice from '../helper/parsePriceForSale';
@@ -111,6 +111,32 @@ const cartsReducer = (state = initState, action) => {
                     carts: [...tempCarts],
                     total: newTotal,
                 }
+            }
+            case UPDATE_QUANTITY: {
+                const { id, number } = action.payload; // id của sản phẩm và số lượng mới từ action
+            
+                let updatedCarts = [...state.carts];
+                let updatedItem = updatedCarts.find(item => item.id === id);
+            
+                if (updatedItem) {
+                    const oldQuantity = updatedItem.quantity; // Lưu số lượng cũ
+                    updatedItem.quantity = number; // Cập nhật số lượng mới cho sản phẩm
+            
+                    // Tính toán giá trị sau khi cập nhật số lượng
+                    const priceAfterSale = ParsePrice.priceAfterSaleNotParseToMoney(updatedItem.price, updatedItem.sale);
+                    const totalPriceDifference = priceAfterSale * (number - oldQuantity);
+                    let newTotal = state.total + totalPriceDifference;
+            
+                    SaveCartsToLocalStorage(updatedCarts); // Lưu lại giỏ hàng mới vào local storage
+            
+                    return {
+                        ...state,
+                        carts: updatedCarts,
+                        total: newTotal,
+                    };
+                }
+                // Trả về state ban đầu nếu không tìm thấy sản phẩm cần cập nhật
+                return state;
             }
         case CREATE_ORDER_LOADING: {
             return {

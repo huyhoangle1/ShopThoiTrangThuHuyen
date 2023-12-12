@@ -1,18 +1,18 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url('../../images/Background-image.png');
     background-size: cover;
     -webkit-background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: paleturquoise;
 }
 .wrapper{
     width: 400px;
     height: 380px;
-    color: white;
+    color: paleturquoise;
     padding: 60px 30px;
     
     box-sizing: border-box;
@@ -24,23 +24,29 @@ h1{
     padding: 0;
     font-weight: bold;
     font-size: 22px;
-    color: #fff;
+    color: #000;
     text-align: center;
     margin-bottom: 30px;
 }
 .wrapper input, .wrapper button{
     width: 100%;
     margin-bottom: 20px;
+    border: 1px solid #000;
+    border-radius: 3px;
 }
+.wrapper input[type="text"]::placeholder,
+.wrapper input[type="password"]::placeholder {
+    font-size: 15px;
+    margin-left: 10px;
+}
+
 .wrapper input[type=text], .wrapper input[type=password] {
-    border: none;
-    border-bottom: 1px solid #ddd;
-    
+    border: 1px solid black;
     outline: none;
     height: 30px;
     font-size: 16px;
     opacity: 1;
-    color: #ccc;
+    color: black;
 }
 .wrapper button[type=submit]{
     border: none;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using server.Data;
+using server.Helper.order;
 using server.Helper.statistics;
 using server.Interfaces;
 using server.Models;
@@ -101,21 +102,18 @@ namespace server.Services
             });
             return products.ToList();
         }
-        private async Task<int> TotalProductInOrder(ProductStatisticSearchRequest request, int productId)
+        public async Task<int> TotalProductPrice(int productId)
         {
-            Expression<Func<Order, bool>> expression = x => DateTime.Compare(DateTime.Parse(request.fromDate), x.deliveryDate) <= 0
-                && DateTime.Compare(DateTime.Parse(request.toDate), x.deliveryDate) >= 0;
             var total = _context.orderDetails.Where(x => x.productId == productId);
-            if(request.toDate != null && request.fromDate != null)
-            {
-                var order = _context.orders.Where(expression).ToList();
-                total = from od in total
-                        join o in order on od.orderId equals o.id
-                        select od;
 
-            }
-            return total.Sum(x => x.quantity);
+            // Tính tổng các giá trị UnitPrice trong danh sách total
+            int totalProductPrice = total.Sum(x => x.unitPrice);
+
+            return totalProductPrice;
         }
+
+
+
 
         public IQueryable<ProductViewModel> ProductStatistics(ProductStatisticsRequest request)
         {
@@ -182,6 +180,44 @@ namespace server.Services
             }
         }
 
+
+        public async Task<List<ListAllOrder>> ListAllOrders()
+        {
+            try
+            {
+                var allOrders = await _context.orders
+                    .ToListAsync();
+
+                var mappedOrders = allOrders.Select(order => new ListAllOrder
+                {
+                    id = order.id,
+                    status = order.status,
+                    total = order.total,
+                    note = order.note,
+                    address = order.address,
+                    street = order.street,
+                    feeShip = order.feeShip,
+                    deliveryDate = order.deliveryDate,
+                    guess = order.user?.UserName, 
+                    phone = order.user?.PhoneNumber, 
+                    email = order.user?.Email,
+                    createDate = order.createDate,
+                    userId = order.userId,
+                    OrderCount = allOrders.Count,
+                    user = order.user,
+                    OrderDetails = order.OrderDetails 
+                }).ToList();
+
+                return mappedOrders;
+            }
+            catch (Exception ex)
+            {
+                throw; 
+            }
+        }
+
+
+
         public List<StatusOrderStatistics> StatusOrderStatistics()
         {
             var querySuccess = _context.orders.Where(a => a.status == enums.OrderStatus.Success).Count();
@@ -195,5 +231,6 @@ namespace server.Services
                 new StatusOrderStatistics(){ status = "Đã hủy", count = queryCancel}
             };
         }
+
     }
 }

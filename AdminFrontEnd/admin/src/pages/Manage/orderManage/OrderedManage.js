@@ -56,7 +56,7 @@ export default class OrderedManage extends Component {
                 address: ele.address,
                 createDate: ele.createDate,
                 //email: ele.email,
-                customer: !!ele.guess? ele.guess:ele.user.displayname,
+                customer: !!ele?.guess? ele?.guess:ele?.user?.displayname,
                 note: ele.note,
                 contact: [ele.email, ele.phone],
                 //phone: ele.phone,
@@ -154,7 +154,7 @@ export default class OrderedManage extends Component {
                 address: ele.address,
                 createDate: ele.createDate,
                 //email: ele.email,
-                customer: !!ele.guess? ele.guess:ele.user.displayname,
+                customer: !!ele?.guess? ele?.guess:ele?.user?.displayname,
                 note: ele.note,
                 contact: [ele.email, ele.phone],
                 //phone: ele.phone,
@@ -177,7 +177,7 @@ export default class OrderedManage extends Component {
         //
         //
         const {orderSuccessList, visible, orderDetailList, isLoading, customerItem, feeShip, 
-            visibleCancel , orderId , note} = this.state;
+            visibleCancel , orderId , note, address, phone} = this.state;
         
         //
         const columns = [
@@ -309,6 +309,8 @@ export default class OrderedManage extends Component {
                             feeShip={feeShip}
                             customer={customerItem}
                             note={note}
+                            phone={phone}
+                            address={address}
                             >
                             </ModalViewOrderDetail> : null
                         }

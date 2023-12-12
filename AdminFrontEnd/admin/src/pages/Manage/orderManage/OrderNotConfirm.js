@@ -79,7 +79,7 @@ export default class OrderNotConfirm extends Component {
                 address: ele.address,
                 createDate: ele.createDate,
                 //email: ele.email,
-                customer: !!ele.guess? ele.guess:ele.user.displayname,
+                customer: !!ele?.guess? ele?.guess:ele?.user?.displayname,
                 note: ele.note,
                 contact: [ele.email, ele.phone],
                 //phone: ele.phone,
@@ -239,7 +239,7 @@ export default class OrderNotConfirm extends Component {
                 address: ele.address,
                 createDate: ele.createDate,
                 //email: ele.email,
-                customer: !!ele.guess? ele.guess:ele.user.displayname,
+                customer: !!ele?.guess? ele?.guess:ele?.user?.displayname,
                 note: ele.note,
                 contact: [ele.email, ele.phone],
                 //phone: ele.phone,
@@ -260,7 +260,7 @@ export default class OrderNotConfirm extends Component {
     }
     render() {
         //
-        const {orderNotConfirm, isLoading, visible, visibleCancel, orderDetailList, customerItem, 
+        const {orderNotConfirm, isLoading, address, phone, visible, visibleCancel, orderDetailList, customerItem, 
             note ,feeShip, orderId} = this.state;
         
         //headers
@@ -411,6 +411,8 @@ export default class OrderNotConfirm extends Component {
                             customer={customerItem}
                             note={note}
                             status={0}
+                            phone={phone}
+                            address={address}
                             >
                             </ModalViewOrderDetail> : null
                         }
