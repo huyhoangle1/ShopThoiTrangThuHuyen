@@ -3,6 +3,7 @@ import Header from '../../../components/common/Header';
 import Sidebar from '../../../components/common/Sidebar';
 import '../../../components/common/styleCommon/Content.css';
 import BreadScrumb from '../../../components/breadScrumb/BreadScrumb';
+import axiosInstance from '../../../utils/axiosInstance';
 import { Card, Space, Typography } from "antd";
 import {
   AndroidOutlined,
@@ -13,9 +14,30 @@ import {
   UserOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
+import './css/Home.css';
 
 export default class MainScreen extends Component {
+    state ={
+        generalStatistics: null,
+    }
+
+    componentDidMount(){
+        this.fetchGeneralStatistics();
+    }
+
+    fetchGeneralStatistics = async () => {
+        try {
+          const response = await axiosInstance('Statistics/GeneralStatistics', 'GET')
+          const generalStatistics = response.data;
+          console.log(generalStatistics ,"General");
+          this.setState({ generalStatistics });
+        } catch (error) {
+          console.error('Không tải được dữ liệu', error);
+        }
+      };
+
     render() {
+        const { generalStatistics } = this.state;
         return (
             <>
             <Header></Header>   
@@ -32,6 +54,7 @@ export default class MainScreen extends Component {
                 title={
                   <>
                     <Typography.Title level={4} style={{ marginTop: 20 }}>
+                         {generalStatistics?.numberAcccount}
                     </Typography.Title>
                     <Typography.Title level={5} style={{ marginBottom: 20 }}>
                       Số lượng tài khoản
@@ -48,7 +71,7 @@ export default class MainScreen extends Component {
                 title={
                   <>
                     <Typography.Title level={4} style={{ marginTop: 20 }}>
-                      {/* {dataNCC.length} */}
+                      {generalStatistics?.numberSuppliers}
                     </Typography.Title>
                     <Typography.Title level={5} style={{ marginBottom: 20 }}>
                       Số lượng NCC
@@ -65,7 +88,7 @@ export default class MainScreen extends Component {
                 title={
                   <>
                     <Typography.Title level={4} style={{ marginTop: 20 }}>
-                      {/* {dataHD.length} */}
+                      {generalStatistics?.numberOrders}
                     </Typography.Title>
                     <Typography.Title level={5} style={{ marginBottom: 20 }}>
                         Số lượng đơn hàng
@@ -82,6 +105,7 @@ export default class MainScreen extends Component {
                 title={
                   <>
                     <Typography.Title level={4} style={{ marginTop: 20 }}>
+                        {generalStatistics?.totalRevenue.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
                     </Typography.Title>
                     <Typography.Title level={5} style={{ marginBottom: 20 }}>
                       Tổng doanh thu
@@ -100,6 +124,7 @@ export default class MainScreen extends Component {
                 title={
                   <>
                     <Typography.Title level={4} style={{ marginTop: 20 }}>
+                        {generalStatistics?.numberProduct}
                     </Typography.Title>
                     <Typography.Title level={5} style={{ marginBottom: 20 }}>
                       Số lượng sản phẩm
@@ -116,7 +141,7 @@ export default class MainScreen extends Component {
                 title={
                   <>
                     <Typography.Title level={4} style={{ marginTop: 20 }}>
-                      {/* {new Intl.NumberFormat("de-DE").format(totalNK)} */}
+                      {generalStatistics?.productStock}
                     </Typography.Title>
                     <Typography.Title level={5} style={{ marginBottom: 20 }}>
                       Sản phẩm hết hàng
@@ -133,7 +158,7 @@ export default class MainScreen extends Component {
                 title={
                   <>
                     <Typography.Title level={4} style={{ marginTop: 20 }}>
-                      {/* {new Intl.NumberFormat("de-DE").format(totalXK)} */}
+                     {generalStatistics?.inventory}
                     </Typography.Title>
                     <Typography.Title level={5} style={{ marginBottom: 20 }}>
                          Tồn kho ( &gt; 500 )

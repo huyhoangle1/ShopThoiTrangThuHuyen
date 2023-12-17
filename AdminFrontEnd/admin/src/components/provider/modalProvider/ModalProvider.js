@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import { Modal, Input, Button } from 'antd';
+import { Modal, Input, Button, message } from 'antd';
 
 
 export default class ModalProvider extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const {data} = this.props;
+        const name = e.target.name.value;
+    
+        if (!name) {
+            message.error('Vui lòng nhập đủ thông tin');
+            return;
+        }
+    
         this.props.onSubmitForm({id: data.id, name: e.target.name.value});
     }
     handleCancel() {

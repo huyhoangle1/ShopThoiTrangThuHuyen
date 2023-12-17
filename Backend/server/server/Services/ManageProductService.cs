@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using server.Data;
 using server.enums;
 using server.Exceptions;
@@ -30,6 +31,11 @@ namespace server.Services
         }
         public async Task<int> Create(ProductCreateRequest request)
         {
+            var existingCategory = await _context.products.FirstOrDefaultAsync(c => c.name == request.name);
+            if (existingCategory != null)
+            {
+                return 0;
+            }
             var tempImages = new List<Image>();
             foreach(IFormFile f in request.images)
             {

@@ -48,9 +48,9 @@ namespace server.Controllers
         {
            
             var productId = await _manageProductService.Create(request);
-            if(productId == 0)
+            if (productId == 0)
             {
-                return BadRequest();
+                return BadRequest("Sản phẩm đã tồn tại !!");
             }
             var product = await _manageProductService.getProductById(productId);
             return CreatedAtAction(nameof(getProductById),new { id = productId}, product);

@@ -45,7 +45,7 @@ namespace server.Controllers
             var providerId = await _manageProviderService.Create(request);
             if (providerId == 0)
             {
-                return BadRequest();
+                return BadRequest("Nhà cung cấp đã tồn tại!!");
             }
             var provider = await _manageProviderService.getProviderById(providerId);
             return CreatedAtAction(nameof(getProviderById), new { id = providerId }, provider);

@@ -46,7 +46,7 @@ namespace server.Controllers
             var categoryId = await _manageCategoryService.Create(request);
             if (categoryId == 0)
             {
-                return BadRequest();
+                return BadRequest("Danh mục đã tồn tại !!");
             }
             var category = await _manageCategoryService.getCategoryById(categoryId);
             return CreatedAtAction(nameof(getCategoryById), new { id = categoryId }, category);

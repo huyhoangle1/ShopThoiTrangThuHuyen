@@ -162,16 +162,36 @@ export default class ModalProduct extends Component {
                         </Row>
                         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} >
                             <Col className="gutter-row" span={12}>
-                                <Form.Item name="name" label="Tên sản phẩm" {...config}>
+                                <Form.Item name="name" label="Tên sản phẩm" {...config} rules={[
+                                    {
+                                        required: true,
+                                        message: 'Vui lòng nhập tên sản phẩm!',
+                                    },
+                                ]}>
                                     <Input type="text" placeholder="Tên sản phẩm"></Input>
                                 </Form.Item>
-                                <Form.Item name="importPrice" label="Giá nhập (VNĐ)" {...config}>
+                                <Form.Item name="importPrice" label="Giá nhập (VNĐ)" {...config} rules={[
+                                    {
+                                        required: true,
+                                        message: 'Vui lòng nhập giá nhập!',
+                                    },
+                                ]}>
                                     <Input type="text" placeholder="Giá nhập" ></Input>
                                 </Form.Item>
-                                <Form.Item name="price" label="Giá bán (VNĐ)" {...config}>
+                                <Form.Item name="price" label="Giá bán (VNĐ)" {...config} rules={[
+                                    {
+                                        required: true,
+                                        message: 'Vui lòng nhập giá bán!',
+                                    },
+                                ]}>
                                     <Input type="text" placeholder="Giá bán"></Input>
                                 </Form.Item>
-                                <Form.Item name="sale" label="Giảm giá (%)" {...config}>
+                                <Form.Item name="sale" label="Giảm giá (%)" {...config} rules={[
+                                    {
+                                        required: true,
+                                        message: 'Vui lòng nhập % giảm giá',
+                                    },
+                                ]}>
                                     <Input type="text" placeholder="Giảm giá"></Input>
                                 </Form.Item>
                                 <Form.Item name="viewCount" label="Lượng xem" {...config}>
@@ -179,13 +199,23 @@ export default class ModalProduct extends Component {
                                 </Form.Item>
                             </Col>
                             <Col className="gutter-row" span={12}>
-                                <Form.Item name="amount" label="Số lượng" {...config}>
+                                <Form.Item name="amount" label="Số lượng" {...config} rules={[
+                                    {
+                                        required: true,
+                                        message: 'Vui lòng nhập số lượng sản phẩm!',
+                                    },
+                                ]}>
                                     <Input type="text" placeholder="số lượng"></Input>
                                 </Form.Item>
-                                <Form.Item name="categoryId" label="Danh mục" {...config}>
+                                <Form.Item name="categoryId" label="Danh mục" {...config} rules={[
+                                    {
+                                        required: true,
+                                        message: 'Vui lòng nhập danh mục!',
+                                    },
+                                ]}>
                                     <Select
-                                    //defaultValue={data.categoryId}
-                                    placeholder="danh mục"
+                                        //defaultValue={data.categoryId}
+                                        placeholder="danh mục"
                                     >
                                         {
                                             categories.map((ele) => {
@@ -194,10 +224,16 @@ export default class ModalProduct extends Component {
                                         }
                                     </Select>
                                 </Form.Item>
-                                <Form.Item name="providerId" label="Nhà cung cấp" {...config}>
+                                <Form.Item name="providerId" label="Nhà cung cấp" {...config}
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Vui lòng nhập nhà cung cấp!',
+                                        },
+                                    ]}>
                                     <Select
-                                    //defaultValue={data.providerId}
-                                    placeholder="nhà cung cấp"
+                                        //defaultValue={data.providerId}
+                                        placeholder="nhà cung cấp"
                                     >
                                         {
                                             providers.map((ele) => {
@@ -206,10 +242,15 @@ export default class ModalProduct extends Component {
                                         }
                                     </Select>
                                 </Form.Item>
-                                <Form.Item name="size" label="Size" {...config}>
+                                <Form.Item name="size" label="Size" {...config} rules={[
+                                    {
+                                        required: true,
+                                        message: 'Vui lòng nhập size!',
+                                    },
+                                ]}>
                                     <Select
-                                    //defaultValue={data.size}
-                                    placeholder="size"
+                                        //defaultValue={data.size}
+                                        placeholder="size"
                                     >
                                         {
                                             sizes.map((ele) => {
@@ -218,10 +259,15 @@ export default class ModalProduct extends Component {
                                         }
                                     </Select>
                                 </Form.Item>
-                                <Form.Item name="color" label="Color" {...config}>
+                                <Form.Item name="color" label="Color" {...config} rules={[
+                                    {
+                                        required: true,
+                                        message: 'Vui lòng nhập mẫu!',
+                                    },
+                                ]}>
                                     <Select
-                                    //defaultValue={data.color}
-                                    placeholder="màu sắc"
+                                        //defaultValue={data.color}
+                                        placeholder="màu sắc"
                                     >
                                         {
                                             colors.map((ele) => {

@@ -73,6 +73,7 @@ export default class CategoryManage extends Component {
                 });
             }
             ).catch(err => {
+                console.log(err);
                 message.warning("Thêm danh mục thất bại!", 2)
                 this.setState({ isLoading: false, visible: false, });
             })
@@ -82,17 +83,19 @@ export default class CategoryManage extends Component {
             this.setState({ isLoading: true });
             axiosInstance('ManageCategory', 'POST', value)
                 .then(res => {
-                    //console.log(res.data);
                     message.success("Thêm danh mục thành công!", 2)
-                    this.setState(prevState => {
-                        return {
-                            ...prevState,
-                            data: [...prevState.data, res.data],
-                            isLoading: false,
-                            visible: false
-                        }
-                    });
+                    this.setState(prevState => ({
+                        ...prevState,
+                        data: [...prevState.data, res.data],
+                        isLoading: false,
+                        visible: false
+                    }));
                 })
+                .catch(e => {
+                    message.error(e.response.data);
+                    this.setState({ isLoading: false, visible: false });
+                });
+            
         }
 
     }

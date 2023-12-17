@@ -7,6 +7,8 @@ import Chart from "react-apexcharts";
 import axiosInstance from '../../../utils/axiosInstance';
 import {Row, Col, Select, Button, Table, Input, DatePicker, Tabs } from 'antd';
 import { logRoles } from '@testing-library/react';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver'
 
 const { RangePicker } = DatePicker;
 const {TabPane} = Tabs;
@@ -32,6 +34,29 @@ export default class StatisticsGeneral extends Component {
             products: listProduct,
         })
     }
+
+    handleExportToExcel = () => {
+        const { status, products, productOrders } = this.state;
+
+        // Chọn dữ liệu tương ứng với status
+        const dataToExport = status ? products : productOrders;
+
+        // Tạo worksheet từ dữ liệu
+        const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Dữ liệu');
+
+        // Chuyển workbook thành ArrayBuffer
+        const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        
+        // Tạo Blob từ ArrayBuffer
+        const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+
+        // Tải xuống file Excel
+        const fileName = status ? 'products.xlsx' : 'productOrders.xlsx';
+        saveAs(blob, fileName);
+    }
+
     callApiOrder = async(body) => {
         let listProduct = await axiosInstance('Statistics/GetListProductOrderStatistic', 'POST', body)
         .then(res => res.data);
@@ -179,7 +204,7 @@ export default class StatisticsGeneral extends Component {
                             <Button onClick={this.handleStatistic.bind(this)}>Thống kê</Button>
                         </Col>
                         <Col span={2}>
-                            <Button>Xuất Excel</Button>
+                            <Button onClick={this.handleExportToExcel}>Xuất Excel</Button>
                         </Col>
                         <Col span={2} offset={1}>
                             <Button onClick={this.handleChangeStatus.bind(this)}>

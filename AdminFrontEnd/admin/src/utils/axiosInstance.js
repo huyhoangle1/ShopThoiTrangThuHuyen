@@ -9,8 +9,7 @@ export default function axiosInstance (endpoint, method = 'GET', body){
         method: method,
         url: `${rootApi.API_URL}/${endpoint}`,
         data: body,
-        headers: {
-            
+        headers: {      
             Authorization: `Bearer ${token.value}` 
         }
     })

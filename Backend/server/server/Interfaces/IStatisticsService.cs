@@ -14,6 +14,7 @@ namespace server.Interfaces
         IQueryable<RevenueStatisticsViewModel> RevenueStatistics(RevenueStatisticsRequest request);
         IQueryable<ProductViewModel> ProductStatistics(ProductStatisticsRequest request);
         List<StatusOrderStatistics> StatusOrderStatistics();
+        Task<GeneralStatistics> generalStatistics();
         Task<int> TotalProductPrice(int productId);
         Task<List<ListAllOrder>> ListAllOrders();
         List<ProductViewModel> GetListProduct(ProductStatisticSearchRequest request);

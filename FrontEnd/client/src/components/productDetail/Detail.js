@@ -161,14 +161,22 @@ class Detail extends Component {
                         <Descriptions.Item className="bold-text" label="Nhà sản xuất">{product.provider.name}</Descriptions.Item>
                         <Descriptions.Item className="bold-text" label="Danh mục">{product.category.generalityName}</Descriptions.Item>
                         <Descriptions.Item className="bold-text" label="Mô tả" span={2}>
-                            <ul style={{ marginLeft: '10px' }}>
-                                {
-                                    product.description.split(';').map((ele, id) => {
-                                        return <li key={id}>{ele}</li>;
-                                    })
-                                }
-                            </ul>
-                        </Descriptions.Item>
+    {
+        product.description && product.description !== "undefined" ? (
+            <ul style={{ marginLeft: '10px' }}>
+                {
+                    product.description.split(';').map((ele, id) => {
+                        return <li key={id}>{ele}</li>;
+                    })
+                }
+            </ul>
+        ) : (
+            <li>Không có mô tả</li>
+        )
+    }
+</Descriptions.Item>
+
+
                         <Descriptions.Item className="bold-text" label="Trạng thái"><Badge status="processing" text="Còn hàng" /></Descriptions.Item>
                     </Descriptions>
                     <br />

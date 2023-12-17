@@ -9,6 +9,7 @@ using Org.BouncyCastle.Asn1.Ocsp;
 using server.Helper;
 using server.Helper.statistics;
 using server.Interfaces;
+using server.ViewModel;
 
 namespace server.Controllers
 {
@@ -81,12 +82,21 @@ namespace server.Controllers
             return Ok(_statisticsService.StatusOrderStatistics());
 
         }
+
+        [HttpGet("GeneralStatistics")]
+        public async Task<IActionResult> GeneralStatistics()
+        {
+            var statistics = await _statisticsService.generalStatistics();
+            return Ok(statistics);
+        }
+
         [HttpPost("GetListProductStatistic")]
         public IActionResult GetListProductStatistic(ProductStatisticSearchRequest request)
         {
             var data = _statisticsService.GetListProduct(request);
             return Ok(data);
         }
+
         [HttpPost("GetListProductOrderStatistic")]
         public IActionResult GetListProductOrderStatistic(ProductStatisticSearchRequest request)
         {

@@ -2,7 +2,8 @@
 .content{
 	background: #ffffff;
 	width: calc(100% - 256px);
-	position: fixed;
+	/* position: fixed; */
+	position: absolute;
 	top: 60px;
 	left: 256px;
 	height: 100%;

@@ -95,6 +95,9 @@ export default class ProviderManage extends Component {
                             visible: false
                         }
                     });
+                }).catch(e =>{
+                    message.error(e.response.data);
+                    this.setState({ isLoading: false, visible: false });
                 })
         }
 

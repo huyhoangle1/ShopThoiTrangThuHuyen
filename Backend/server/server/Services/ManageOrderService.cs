@@ -207,7 +207,7 @@ namespace server.Services
             var total = order.total;
             var customer = string.IsNullOrEmpty(order.guess) ? order.user.displayname : order.guess;
             order.status = request.status;
-            order.note = "Admin hủy";
+            order.note = "Admin xác nhận";
             _context.Entry(order).State = EntityState.Modified;
             var rs = await _context.SaveChangesAsync() > 0;
             return new ResultOrderViewModel { total = total, customer = customer, email= order.email, success = rs };

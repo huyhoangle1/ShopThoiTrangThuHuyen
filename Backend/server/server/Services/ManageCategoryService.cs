@@ -26,15 +26,23 @@ namespace server.Services
         }
         public async Task<int> Create(CategoryCreateRequest request)
         {
-            var category = new Category()
+            var existingCategory = await _context.categories.FirstOrDefaultAsync(c => c.name == request.name || c.generalityName == request.generalityName);
+            if (existingCategory != null)
             {
-                generalityName = request.generalityName,
-                name = request.name,
-                status = request.status
-            };
-            _context.categories.Add(category);
-            await _context.SaveChangesAsync();
-            return category.id;
+                return 0;
+            }
+            else
+            {
+                var category = new Category()
+                {
+                    generalityName = request.generalityName,
+                    name = request.name,
+                    status = request.status
+                };
+                _context.categories.Add(category);
+                await _context.SaveChangesAsync();
+                return category.id;
+            }
         }
 
         

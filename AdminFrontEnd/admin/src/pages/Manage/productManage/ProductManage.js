@@ -93,7 +93,7 @@ export default class ProductManage extends Component {
       providerId: values.providerId,
       size: values.size,
       color: values.color,
-      description: values.description.split('\n').join(';'),
+      description: values?.description?.split('\n')?.join(';'),
       amount: values.amount,
       viewCount: values.viewCount,
     }
@@ -119,7 +119,10 @@ export default class ProductManage extends Component {
             data: [...this.state.data, res.data],
             isLoading: false,
           })
-        })
+        }).catch(e =>{
+          message.error(e.response.data);
+          this.setState({ isLoading: false, visible: false });
+      })
     }
     else {
       const productUpdate = new FormData();

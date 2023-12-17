@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
-import { Modal, Input, Button } from 'antd';
+import { Modal, Input, Button, message } from 'antd';
 
 
 export default class ModalCategory extends Component {
-    handleSubmit(e) {
-        e.preventDefault();
-        const {data} = this.props;
-        this.props.onSubmitForm({id: data.id, name: e.target.name.value, generalityName: e.target.generalityName.value});
-    }
     handleCancel() {
         this.props.onCancel(false)
     }
+    handleSubmit(e) {
+        e.preventDefault();
+        const { data } = this.props;
+        const generalityName = e.target.generalityName.value;
+        const name = e.target.name.value;
+    
+        if (!generalityName || !name) {
+            message.error('Vui lòng nhập đủ thông tin');
+        //    this.handleCancel(false); 
+            return;
+        }
+    
+        this.props.onSubmitForm({ id: data.id, name: generalityName, generalityName: name });
+    }
+    
     handleChangeInput(e) {
         this.props.onChangeInput(e)
     }
     render() {
-
         const { data , visible } = this.props;
         console.log(this);
         return (

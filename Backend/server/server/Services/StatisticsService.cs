@@ -134,7 +134,7 @@ namespace server.Services
             else
             {
                 var query = (from p in _context.products
-                             where p.amount >= 100 && p.status == enums.ActionStatus.Display
+                             where p.amount >= 500 && p.status == enums.ActionStatus.Display
                              orderby p.amount ascending
                              select new ProductViewModel
                              {
@@ -232,5 +232,29 @@ namespace server.Services
             };
         }
 
+
+        public async Task<GeneralStatistics> generalStatistics()
+        {
+            int NumberAccount = await _context.Users.CountAsync(x => x.displayname != "Admin");
+            int NumberSuppliers = await _context.providers.CountAsync();
+            int NumberOrders =await _context.orders.Where(a => a.status == enums.OrderStatus.Success).CountAsync();
+            int TotalRevenue =await _context.orders.Where(a => a.status == enums.OrderStatus.Success).SumAsync(x => x.total);
+            int NumberProduct =await _context.products.CountAsync();
+            int ProductStock = await _context.products.Where(a => a.amount <= 0).CountAsync();
+            int Inventory = await _context.products.Where(a => a.amount >= 500).CountAsync();
+
+            GeneralStatistics statistics = new GeneralStatistics
+            {
+                NumberAcccount = NumberAccount,
+                NumberSuppliers = NumberSuppliers,
+                NumberOrders = NumberOrders,
+                TotalRevenue = TotalRevenue,
+                NumberProduct = NumberProduct,
+                ProductStock = ProductStock,
+                Inventory = Inventory
+            };
+
+            return statistics;
+        }
     }
 }

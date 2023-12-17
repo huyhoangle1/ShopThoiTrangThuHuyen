@@ -1,0 +1,27 @@
+.Home {
+    display: flex;
+    margin-top: 8.5vh;
+}
+
+.Home-content {
+    background-color: #e2e2e2;
+    width: 100%;
+    height: 100vh;
+}
+
+.Home-content-title {
+    padding-left: 15px; 
+}
+
+.Home-img {
+    width: 100%;
+    height: 90vh;
+}
+
+.Flexbox {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+    margin: 10%;
+}

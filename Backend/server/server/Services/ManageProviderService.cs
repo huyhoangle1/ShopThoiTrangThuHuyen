@@ -23,6 +23,11 @@ namespace server.Services
         }
         public async Task<int> Create(ProviderCreateRequest request)
         {
+            var existingCategory = await _context.providers.FirstOrDefaultAsync(c => c.name == request.name);
+            if (existingCategory != null)
+            {
+                return 0;
+            }
             var provider = new Provider()
             {
                 name = request.name,

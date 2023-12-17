@@ -138,12 +138,7 @@ function getBase64(img, callback) {
                     <Row>
                         <Col span={24}>
                     <div>
-                        {/*
-                        <Button type="primary" icon={<FaFacebookF></FaFacebookF>} style={{height: '40px', border: '1px solid #0050b3', backgroundColor: '#0050b3'}} className="login-form-button">
-                            &nbsp;ĐĂNG NHẬP BẰNG FACEBOOK
-                        </Button>
-                        */}
-                        <FacebookLogin
+                        {/* <FacebookLogin
                         appId={646768039528160}
                         autoLoad={true}
                         //onClick={componentClicked}
@@ -151,7 +146,7 @@ function getBase64(img, callback) {
                         callback={this.responseFacebook.bind(this)}
                         cssClass="my-facebook-button-class"
                         icon={<FaFacebookF style={{marginRight: 5}}/>}
-                        ></FacebookLogin>
+                        ></FacebookLogin> */}
                     </div>
                     </Col>
                     </Row>

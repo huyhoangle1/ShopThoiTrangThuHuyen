@@ -38,9 +38,14 @@ export default class ModalViewOrderDetail extends Component {
     }
     handleExportToPDF = async () => {
         const input = document.getElementById('pdf-content');
+        const originalPaddingTop = input.style.paddingTop; // Lưu giữ giá trị paddingTop ban đầu
+    
+        // Đặt paddingTop thành '4em' chỉ trong quá trình xuất PDF
+        input.style.paddingTop = '4em';
+    
         const { clientWidth, clientHeight } = input;
     
-        html2canvas(input)
+        html2canvas(input, { scrollY: -window.scrollY })
             .then((canvas) => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF('p', 'px', [clientWidth, clientHeight]);
@@ -50,12 +55,18 @@ export default class ModalViewOrderDetail extends Component {
     
                 pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
                 pdf.save('exported_content.pdf');
+    
+                // Khôi phục lại giá trị paddingTop ban đầu sau khi xuất PDF
+                input.style.paddingTop = originalPaddingTop;
             })
             .catch((error) => {
                 console.error('Error exporting to PDF:', error);
-                // Handle error, if any
+                // Xử lý lỗi, nếu có
+                // Khôi phục lại giá trị paddingTop ban đầu sau khi xuất PDF (nếu cần)
+                input.style.paddingTop = originalPaddingTop;
             });
     };
+    
     
 
     componentDidMount() {
@@ -262,6 +273,7 @@ export default class ModalViewOrderDetail extends Component {
                 title={<strong>CHI TIẾT ĐƠN HÀNG</strong>}
             >
                 <div id='pdf-content'>
+                    <h1>SHOP THỜI TRANG THU HUYỀN</h1>
                     <Row>
                         <Col span={20} offset={2}>
                             <Row>

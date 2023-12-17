@@ -159,7 +159,7 @@ export default class StatisticsRevenue extends Component {
                             type="line"
                             height="550"
                         />
-                        <Row style={{background: '#fafafa', padding: '10px'}}>
+                        <Row style={{background: '#fafafa', padding: '10px'}} className='row-statistical'>
                           <Col offset={3}>
                             <Select defaultValue={option}
                               onChange={this.handleChangeOption.bind(this)}
